@@ -13,7 +13,8 @@ jobs:
       contents: write
     steps:
     - name: Setup Poetry
-      uses: abatilo/actions-poetry@v2
+      run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+           echo "$HOME/.poetry/bin" >> $GITHUB_PATH
     - name: Checkout
       uses: actions/checkout@v3
     - name: Generate index
