@@ -16,7 +16,10 @@ jobs:
       uses: abatilo/actions-poetry@v2
     - name: Checkout
       uses: actions/checkout@v3
+    - run: poetry export -f requirements.txt -o requirements.txt
     - name: Generate index
-      run: poetry install && poetry poetry run python script/summary.py
+      run: |
+        pip install -r requirements.txt
+        python script/summary.py
     - uses: stefanzweifel/git-auto-commit-action@v4
       
