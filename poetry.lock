@@ -18,5 +18,5 @@ testing = ["coverage", "pyyaml"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.11"
-content-hash = "4d47cde90e6624cbf165120198d475fad78d517560178a4c5582b422d148aaa7"
+python-versions = "^3.10"
+content-hash = "2db86aa0177f189b061bb8274320f8256493eefb65c5a39e2aaf851089c0e47a"
