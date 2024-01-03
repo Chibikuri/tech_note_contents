@@ -39,8 +39,8 @@ class Parser(HTMLParser):
             self.parse_summary = False
 
 
-def form_data(id, title, summary):
-    return {"id": id, "title": title, "summary": summary}
+def form_data(id, title, summary, file_name):
+    return {"id": id, "title": title, "summary": summary, "file_name": file_name}
 
 
 def summarize():
@@ -49,17 +49,17 @@ def summarize():
     markdowns = glob.glob(os.path.join(dir_path, "*.md"))
     json_data = []
     id = 0
-    for md in markdowns:
+    for md in reversed(markdowns):
         parser = Parser()
         with open(md) as f:
             parser.feed(markdown.markdown(f.read()))
-        json_data.append(form_data(id, parser.title, parser.summary))
+        json_data.append(form_data(id, parser.title, parser.summary, md))
         id += 1
     with open("./contents/index.jsonl", mode='w') as fout:
         fout.write("[")
         for data in json_data:
             json.dump(data, fout, ensure_ascii=False)
-            fout.write("\n")
+            fout.write(",\n")
         fout.write("]")
 
 
