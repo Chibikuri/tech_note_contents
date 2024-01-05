@@ -55,11 +55,13 @@ def summarize():
             parser.feed(markdown.markdown(f.read()))
         json_data.append(form_data(id, parser.title, parser.summary, md))
         id += 1
-    with open("./contents/index.jsonl", mode='w') as fout:
+    data_size = len(json_data)
+    with open("./contents/index.json", mode='w') as fout:
         fout.write("[")
-        for data in json_data:
+        for i, data in enumerate(json_data):
             json.dump(data, fout, ensure_ascii=False)
-            fout.write(",\n")
+            if i != data_size - 1:
+                fout.write(",\n")
         fout.write("]")
 
 
